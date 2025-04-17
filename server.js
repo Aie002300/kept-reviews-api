@@ -10,8 +10,12 @@ const placeId = 'ChIJqzxOyr6X4jARLcJJZXkZjnk'; // Place ID ของ KEPT
 app.get('/get-reviews', async (req, res) => {
   try {
     const response = await axios.get(
-      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,reviews&key=${apiKey}`
-    );
+  `https://maps.googleapis.com/maps/api/place/details/json` +
+  `?place_id=${placeId}` +
+  `&fields=name,rating,reviews` +
+  `&reviews_no_translations=true` +
+  `&key=${apiKey}`
+);
     res.json(response.data.result.reviews);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching reviews' });
